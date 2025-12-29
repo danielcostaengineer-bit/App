@@ -267,10 +267,11 @@ async def upload_analysis(file: UploadFile = File(...), user_id: str = Depends(v
         
         # Create analysis record
         analysis_id = str(uuid.uuid4())
+        analysis_date = datetime.now(timezone.utc)
         analysis_doc = {
             "id": analysis_id,
             "user_id": user_id,
-            "analysis_date": datetime.now(timezone.utc).isoformat(),
+            "analysis_date": analysis_date.isoformat(),
             "muscle_groups": analysis_data.get('muscle_groups', {}),
             "weak_areas": analysis_data.get('weak_areas', []),
             "recommendations": analysis_data.get('recommendations', []),
@@ -279,14 +280,25 @@ async def upload_analysis(file: UploadFile = File(...), user_id: str = Depends(v
             "progress_score": calculate_progress_score(analysis_data.get('muscle_groups', {}))
         }
         
-        await db.analyses.insert_one(analysis_doc)
+        # Insert without _id field
+        result = await db.analyses.insert_one(analysis_doc)
         
-        # Return without image to reduce payload
-        response_doc = {k: v for k, v in analysis_doc.items() if k != 'image_base64'}
-        return response_doc
+        # Return response without MongoDB _id and without image to reduce payload
+        return {
+            "id": analysis_id,
+            "user_id": user_id,
+            "analysis_date": analysis_date,
+            "muscle_groups": analysis_doc["muscle_groups"],
+            "weak_areas": analysis_doc["weak_areas"],
+            "recommendations": analysis_doc["recommendations"],
+            "overall_assessment": analysis_doc["overall_assessment"],
+            "progress_score": analysis_doc["progress_score"]
+        }
         
     except Exception as e:
         logging.error(f"Error processing upload: {str(e)}")
+        import traceback
+        logging.error(traceback.format_exc())
         raise HTTPException(status_code=500, detail=f"Error processing image: {str(e)}")
 
 def calculate_progress_score(muscle_groups: dict) -> float:

@@ -1,0 +1,160 @@
+{
+  "identity": {
+    "name": "E1",
+    "role": "Anti-AI Designer",
+    "principles": [
+      "Fusion over Imitation",
+      "Emotion First",
+      "Content is King",
+      "Zoom In",
+      "Negative Space",
+      "Contrast"
+    ]
+  },
+  "project_context": {
+    "app_name": "BodyArchitect AI",
+    "app_type": "SaaS Fitness Dashboard & Analysis",
+    "target_audience": "Fitness enthusiasts, muscle builders, data-driven athletes",
+    "emotional_tone": "Scientific, Precise, Motivational, High-Tech",
+    "theme_strategy": "Hybrid Clinical Future"
+  },
+  "typography": {
+    "font_family": {
+      "headings": "Chivo, sans-serif",
+      "body": "Manrope, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "installation": {
+      "google_fonts_import": "https://fonts.googleapis.com/css2?family=Chivo:wght@300;400;700;900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    },
+    "usage_rules": {
+      "headings": "Use Chivo for all H1-H3. Weight: 700 or 900. Tracking: -0.02em.",
+      "body": "Use Manrope for all UI text. Weight: 400 or 500.",
+      "data": "Use JetBrains Mono for numerical data, stats, and analysis results."
+    }
+  },
+  "colors": {
+    "palette": {
+      "primary": {
+        "name": "Slate Deep",
+        "hex": "#0F172A",
+        "tailwind": "bg-slate-900"
+      },
+      "secondary": {
+        "name": "Clinical White",
+        "hex": "#FFFFFF",
+        "tailwind": "bg-white"
+      },
+      "accent_primary": {
+        "name": "Scanner Blue",
+        "hex": "#38BDF8",
+        "tailwind": "text-sky-400"
+      },
+      "accent_secondary": {
+        "name": "Muscle Orange",
+        "hex": "#F97316",
+        "tailwind": "text-orange-500"
+      },
+      "success": {
+        "name": "Growth Green",
+        "hex": "#22C55E",
+        "tailwind": "text-green-500"
+      },
+      "background": {
+        "light": "#F8FAFC",
+        "dark": "#020617"
+      }
+    },
+    "usage_rules": {
+      "dashboard_bg": "bg-slate-50",
+      "sidebar_bg": "bg-white",
+      "analysis_view": "ALWAYS Dark Mode (bg-slate-950) to highlight the body scan.",
+      "gradients": "Use subtle noise gradients, NO linear rainbow gradients."
+    }
+  },
+  "layout_strategies": {
+    "dashboard": {
+      "type": "Bento Grid",
+      "grid_cols": "grid-cols-1 md:grid-cols-4 lg:grid-cols-12",
+      "gap": "gap-6",
+      "padding": "p-6 md:p-8"
+    },
+    "landing_page": {
+      "type": "Asymmetrical Tetris Grid",
+      "hero_alignment": "Left aligned text, Right aligned 3D/Image",
+      "section_spacing": "py-24 or py-32"
+    },
+    "analysis_page": {
+      "type": "Control Room",
+      "structure": "Central viewport for image (70% width), Right sidebar for metrics (30% width)."
+    }
+  },
+  "components": {
+    "buttons": {
+      "style": "Sharp corners or small radius (rounded-md).",
+      "primary": "bg-slate-900 text-white hover:bg-slate-800 shadow-lg hover:shadow-xl transition-all",
+      "secondary": "bg-white border border-slate-200 text-slate-900 hover:bg-slate-50"
+    },
+    "cards": {
+      "style": "Flat, 1px border (border-slate-200), no shadow by default. Hover: shadow-md.",
+      "glass": "backdrop-blur-xl bg-white/70 border-white/20 (Only for overlays)"
+    },
+    "inputs": {
+      "style": "bg-slate-50 border-slate-200 focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
+    },
+    "charts": {
+      "library": "Recharts (via Shadcn)",
+      "style": "Minimal, thin lines, gradient fills with low opacity."
+    }
+  },
+  "visual_enhancers": {
+    "textures": "Use subtle grain overlay on dark backgrounds.",
+    "borders": "Use 'Tracing Beam' effect for active analysis cards.",
+    "shadows": "Layered shadows: shadow-sm + shadow-xl (low opacity) for floating elements."
+  },
+  "image_assets": {
+    "hero_man": {
+      "url": "https://images.unsplash.com/photo-1646072507419-9f836f8d3f67?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwzfHxhdGhsZXRpYyUyMG1hbiUyMGZpdG5lc3MlMjBwb3NlJTIwc3R1ZGlvJTIwbGlnaHRpbmd8ZW58MHx8fHwxNzY3MDUwOTA4fDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Athletic man in studio",
+      "usage": "Landing page hero or male profile placeholder"
+    },
+    "hero_woman": {
+      "url": "https://images.unsplash.com/photo-1756699495345-6877309eb20b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzl8MHwxfHNlYXJjaHw0fHxhdGhsZXRpYyUyMHdvbWFuJTIwZml0bmVzcyUyMHBvc2UlMjBzdHVkaW8lMjBsaWdodGluZ3xlbnwwfHx8fDE3NjcwNTA5MDl8MA&ixlib=rb-4.1.0&q=85",
+      "alt": "Athletic woman analysis pose",
+      "usage": "Analysis demo screen or female profile placeholder"
+    },
+    "gym_bg": {
+      "url": "https://images.unsplash.com/photo-1740895307943-7878df384db1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzh8MHwxfHNlYXJjaHw0fHxtb2Rlcm4lMjBneW0lMjBpbnRlcmlvciUyMGRhcmslMjBhZXN0aGV0aWN8ZW58MHx8fHwxNzY3MDUwOTEzfDA&ixlib=rb-4.1.0&q=85",
+      "alt": "Dark modern gym",
+      "usage": "Background for login/signup pages (with overlay)"
+    }
+  },
+  "motion": {
+    "library": "Framer Motion",
+    "transitions": "transition-all duration-300 ease-out",
+    "page_load": "Opacity fade-in + slight y-axis slide up.",
+    "hover": "Scale 1.02 + Shadow increase."
+  },
+  "accessibility": {
+    "contrast": "Ensure 4.5:1 for text. Use APCA for large text.",
+    "focus": "Visible focus rings (ring-2 ring-sky-400) on all interactive elements.",
+    "reduced_motion": "Respect prefers-reduced-motion media query."
+  },
+  "tech_stack_specifics": {
+    "framework": "React (Vite)",
+    "styling": "Tailwind CSS",
+    "components": "Shadcn UI (JSX)",
+    "icons": "Lucide React",
+    "charts": "Recharts"
+  },
+  "universal_guidelines": [
+    "Do not use gradients for text unless it is a very large headline.",
+    "Avoid 'Inter' font for headings. Use 'Chivo'.",
+    "Never use pure black (#000000). Use Slate-950 (#020617).",
+    "All interactive elements MUST have data-testid attributes.",
+    "Do not use transparent backgrounds for dropdowns or headers without blur.",
+    "Use 'sonner' for toasts.",
+    "Components must use named exports.",
+    "Pages must use default exports."
+  ]
+}

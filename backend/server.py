@@ -120,17 +120,19 @@ async def analyze_body_image(image_base64: str) -> dict:
     "legs": "weak/moderate/strong"
   },
   "weak_areas": ["list of specific weak muscle groups"],
-  "recommendations": [
-    "Specific exercise recommendation 1 with sets/reps",
-    "Specific exercise recommendation 2 with sets/reps",
-    "Specific exercise recommendation 3 with sets/reps",
-    "Nutrition tip",
-    "Recovery tip"
+  "exercises": [
+    {
+      "name": "Exercise name (e.g., Push-ups, Squats)",
+      "target": "Target muscle group",
+      "sets": "3-4",
+      "reps": "10-12",
+      "instructions": "Brief 2-3 sentence instruction on proper form"
+    }
   ],
   "overall_assessment": "Brief overall assessment of physique"
 }
 
-Provide practical, specific recommendations based on the visible muscle development."""
+Provide 4-5 specific exercises with clear instructions based on the weak areas identified."""
         
         # Send message with image
         user_message = UserMessage(
@@ -165,12 +167,28 @@ Provide practical, specific recommendations based on the visible muscle developm
                 "legs": "moderate"
             },
             "weak_areas": ["Unable to analyze - please try again"],
-            "recommendations": [
-                "Focus on compound movements",
-                "Maintain consistent training schedule",
-                "Ensure adequate protein intake",
-                "Get 7-9 hours of sleep",
-                "Stay hydrated"
+            "exercises": [
+                {
+                    "name": "Push-ups",
+                    "target": "Chest, Shoulders, Triceps",
+                    "sets": "3",
+                    "reps": "10-15",
+                    "instructions": "Start in plank position with hands shoulder-width apart. Lower your body until chest nearly touches the floor, keeping elbows at 45 degrees. Push back up to starting position."
+                },
+                {
+                    "name": "Squats",
+                    "target": "Legs, Glutes, Core",
+                    "sets": "3",
+                    "reps": "12-15",
+                    "instructions": "Stand with feet shoulder-width apart. Lower your body by bending knees and hips as if sitting back into a chair. Keep chest up and knees behind toes. Return to standing."
+                },
+                {
+                    "name": "Plank",
+                    "target": "Core, Shoulders",
+                    "sets": "3",
+                    "reps": "30-60 seconds",
+                    "instructions": "Hold a push-up position with forearms on the ground. Keep your body in a straight line from head to heels. Engage core and avoid letting hips sag."
+                }
             ],
             "overall_assessment": "Analysis unavailable - please upload a clear, well-lit photo"
         }

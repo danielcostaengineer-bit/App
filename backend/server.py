@@ -193,6 +193,59 @@ Provide 4-5 specific exercises with clear instructions based on the weak areas i
             "overall_assessment": "Analysis unavailable - please upload a clear, well-lit photo"
         }
 
+async def fetch_exercise_images(exercise_names: List[str]) -> List[str]:
+    """Fetch exercise images - returns list of image URLs"""
+    image_urls = []
+    
+    # Mapping of common exercises to Unsplash search terms
+    exercise_map = {
+        'push-up': 'pushup exercise fitness',
+        'squat': 'squat exercise fitness',
+        'plank': 'plank exercise core',
+        'deadlift': 'deadlift exercise gym',
+        'bench press': 'bench press gym',
+        'pull-up': 'pullup exercise',
+        'dumbbell': 'dumbbell exercise',
+        'barbell': 'barbell exercise gym',
+        'lunge': 'lunge exercise fitness',
+        'row': 'rowing exercise gym',
+        'curl': 'bicep curl exercise',
+        'press': 'shoulder press exercise',
+        'crunch': 'crunch abs exercise',
+        'dip': 'dips exercise',
+        'leg': 'leg exercise gym'
+    }
+    
+    for exercise_name in exercise_names:
+        try:
+            # Find matching search term
+            search_term = 'fitness exercise'
+            exercise_lower = exercise_name.lower()
+            for key, value in exercise_map.items():
+                if key in exercise_lower:
+                    search_term = value
+                    break
+            
+            # Use generic fitness images - in production you'd call Unsplash API here
+            # For now, using a curated list of fitness images
+            fitness_images = [
+                "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=400&h=300&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=300&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=400&h=300&fit=crop&q=80",
+                "https://images.unsplash.com/photo-1434682881908-b43d0467b798?w=400&h=300&fit=crop&q=80"
+            ]
+            
+            # Rotate through images
+            image_url = fitness_images[len(image_urls) % len(fitness_images)]
+            image_urls.append(image_url)
+            
+        except Exception as e:
+            logging.error(f"Error fetching image for {exercise_name}: {str(e)}")
+            image_urls.append("https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80")
+    
+    return image_urls
+
 # Auth Endpoints
 @api_router.post("/auth/register")
 async def register(user_data: UserRegister):

@@ -223,7 +223,28 @@ export default function Dashboard() {
                         year: 'numeric'
                       })}
                     </div>
-                    <div className=\"mb-4\">\n                      <div className=\"text-2xl font-mono font-bold text-slate-900\">\n                        {analysis.progress_score?.toFixed(0) || 50}\n                      </div>\n                      <div className=\"text-xs text-slate-600\">Progress Score</div>\n                    </div>\n                    {analysis.weak_areas && analysis.weak_areas.length > 0 && (\n                      <div>\n                        <div className=\"text-xs font-medium text-slate-900 mb-1\">Weak Areas:</div>\n                        <div className=\"text-sm text-orange-500\">\n                          {analysis.weak_areas.slice(0, 2).join(', ')}\n                        </div>\n                      </div>\n                    )}\n                    {analysis.exercises && analysis.exercises.length > 0 && (\n                      <div className=\"mt-2\">\n                        <div className=\"text-xs font-medium text-slate-900 mb-1\">Exercises:</div>\n                        <div className=\"text-sm text-green-600\">\n                          {analysis.exercises.length} recommended\n                        </div>\n                      </div>\n                    )}
+                    <div className="mb-4">
+                      <div className="text-2xl font-mono font-bold text-slate-900">
+                        {analysis.progress_score?.toFixed(0) || 50}
+                      </div>
+                      <div className="text-xs text-slate-600">Progress Score</div>
+                    </div>
+                    {analysis.weak_areas && analysis.weak_areas.length > 0 && (
+                      <div>
+                        <div className="text-xs font-medium text-slate-900 mb-1">Weak Areas:</div>
+                        <div className="text-sm text-orange-500">
+                          {analysis.weak_areas.slice(0, 2).join(', ')}
+                        </div>
+                      </div>
+                    )}
+                    {analysis.exercises && analysis.exercises.length > 0 && (
+                      <div className="mt-2">
+                        <div className="text-xs font-medium text-slate-900 mb-1">Exercises:</div>
+                        <div className="text-sm text-green-600">
+                          {analysis.exercises.length} recommended
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}

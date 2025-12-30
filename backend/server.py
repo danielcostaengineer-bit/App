@@ -283,6 +283,18 @@ async def upload_analysis(file: UploadFile = File(...), user_id: str = Depends(v
         # Analyze image
         analysis_data = await analyze_body_image(image_base64)
         
+        # Fetch exercise images from Unsplash
+        exercises = analysis_data.get('exercises', [])
+        for exercise in exercises:
+            try:
+                # Simple image URL generation (using placeholder service)
+                exercise_name = exercise.get('name', 'exercise')
+                # Use a generic fitness image for now - you can enhance this with actual Unsplash API
+                exercise['image_url'] = f"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80"
+            except Exception as img_error:
+                logging.error(f"Error fetching exercise image: {str(img_error)}")
+                exercise['image_url'] = None
+        
         # Create analysis record
         analysis_id = str(uuid.uuid4())
         analysis_date = datetime.now(timezone.utc)
@@ -292,7 +304,7 @@ async def upload_analysis(file: UploadFile = File(...), user_id: str = Depends(v
             "analysis_date": analysis_date.isoformat(),
             "muscle_groups": analysis_data.get('muscle_groups', {}),
             "weak_areas": analysis_data.get('weak_areas', []),
-            "recommendations": analysis_data.get('recommendations', []),
+            "exercises": exercises,
             "overall_assessment": analysis_data.get('overall_assessment', ''),
             "image_base64": image_base64,
             "progress_score": calculate_progress_score(analysis_data.get('muscle_groups', {}))
@@ -308,7 +320,7 @@ async def upload_analysis(file: UploadFile = File(...), user_id: str = Depends(v
             "analysis_date": analysis_date,
             "muscle_groups": analysis_doc["muscle_groups"],
             "weak_areas": analysis_doc["weak_areas"],
-            "recommendations": analysis_doc["recommendations"],
+            "exercises": analysis_doc["exercises"],
             "overall_assessment": analysis_doc["overall_assessment"],
             "progress_score": analysis_doc["progress_score"]
         }

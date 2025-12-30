@@ -159,17 +159,38 @@ export default function AnalysisPage() {
             )}
 
             {/* Recommendations */}
-            {analysis.recommendations && analysis.recommendations.length > 0 && (
+            {analysis.exercises && analysis.exercises.length > 0 && (
               <div className="bg-slate-900/50 backdrop-blur-xl rounded-lg border border-slate-800 p-6" data-testid="recommendations-card">
-                <h3 className="font-bold mb-4 text-green-400">Recommendations</h3>
-                <ul className="space-y-3">
-                  {analysis.recommendations.map((rec, index) => (
-                    <li key={index} className="text-slate-300 text-sm flex items-start gap-2">
-                      <span className="text-green-400 mt-1">✓</span>
-                      <span>{rec}</span>
-                    </li>
+                <h3 className="font-bold mb-4 text-green-400">Recommended Exercises</h3>
+                <div className="space-y-4">
+                  {analysis.exercises.map((exercise, index) => (
+                    <div key={index} className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                      <div className="flex gap-4">
+                        {/* Exercise Image */}
+                        {exercise.image_url && (
+                          <div className="flex-shrink-0">
+                            <img
+                              src={exercise.image_url}
+                              alt={exercise.name}
+                              className="w-24 h-24 rounded-lg object-cover"
+                            />
+                          </div>
+                        )}
+                        
+                        {/* Exercise Details */}
+                        <div className="flex-1">
+                          <h4 className="font-bold text-white mb-1">{exercise.name}</h4>
+                          <p className="text-sm text-sky-400 mb-2">{exercise.target}</p>
+                          <p className="text-sm text-slate-300 mb-2">{exercise.instructions}</p>
+                          <div className="flex gap-4 text-xs text-slate-400">
+                            <span>Sets: <span className="text-green-400 font-mono">{exercise.sets}</span></span>
+                            <span>Reps: <span className="text-green-400 font-mono">{exercise.reps}</span></span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
           </div>

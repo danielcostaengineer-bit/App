@@ -283,17 +283,16 @@ async def upload_analysis(file: UploadFile = File(...), user_id: str = Depends(v
         # Analyze image
         analysis_data = await analyze_body_image(image_base64)
         
-        # Fetch exercise images from Unsplash
+        # Fetch exercise images
         exercises = analysis_data.get('exercises', [])
-        for exercise in exercises:
-            try:
-                # Simple image URL generation (using placeholder service)
-                exercise_name = exercise.get('name', 'exercise')
-                # Use a generic fitness image for now - you can enhance this with actual Unsplash API
-                exercise['image_url'] = f"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80"
-            except Exception as img_error:
-                logging.error(f"Error fetching exercise image: {str(img_error)}")
-                exercise['image_url'] = None
+        exercise_images = await fetch_exercise_images([ex.get('name', '') for ex in exercises])
+        
+        # Add images to exercises
+        for i, exercise in enumerate(exercises):
+            if i < len(exercise_images):
+                exercise['image_url'] = exercise_images[i]
+            else:
+                exercise['image_url'] = "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&q=80"
         
         # Create analysis record
         analysis_id = str(uuid.uuid4())
